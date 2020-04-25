@@ -49,16 +49,18 @@ let revWords3 = (str) => {
 };
 
 //extra credit code
-let containsDuplicates = s => {
-  let cArr = [0, 0, 0, 0],
-    code;
-  for (let i in cArr) {
-    code = s[i].toUpperCase().charCodeAt(0) - 65;
-    //console.log(code);
-    if (cArr[code] > 0) {
-      return true;
-    } else {
-      cArr[i]++;
+let containsDuplicates = (s) => {
+  let charCount = new Array(26).fill(0);
+  let charArray = Array.from(s.toUpperCase());
+  for (let i in charArray) {
+    if (charArray[i] != " ") {
+      let index = s.toUpperCase().charCodeAt(i) - 65;
+
+      if (charCount[index] == 0) {
+        charCount[index] = charArray[i];
+      } else {
+        return true;
+      }
     }
   }
   return false;
